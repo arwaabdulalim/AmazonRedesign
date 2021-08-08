@@ -14,7 +14,17 @@ import TotalPrice from '../TotalPrice';
 import styles from './style';
 
 const CartList = props => {
+  useEffect(() => {
+    let price = 0;
+    let string = '';
+    props.data.forEach(element => {
+      string = element.price.substring(1, element.price.length);
+      price += parseFloat(string.replace(',', ''));
+    });
+    setGoodsPrice(`$${price.toFixed(3)}`);
+  }, [props.data]);
   const [items, setItems] = useState(0);
+  const [goodsPrice, setGoodsPrice] = useState('');
 
   // handle incremant
   const addPlus = () => {
@@ -60,25 +70,29 @@ const CartList = props => {
           </View>
         )}
       />
-      <TotalPrice
-        goods="Goods:"
-        goodsPrice="$11,722.4"
-        delivery="Delivery:"
-        deliveryPrice="$0.00"
-        total="Total:"
-        totalPrice="$11,722.4"
-      />
-      <SharedButton
-        onPress={() => props.navigation.navigate('PaymentMethod')}
-        title="Check Out"
-        style={{
-          top: 100,
-        }}
-        textStyle={{
-          fontSize: 20,
-          color: 'white',
-        }}
-      />
+      {props.data.length > 0 ? (
+        <>
+          <TotalPrice
+            goods="Goods:"
+            goodsPrice={goodsPrice}
+            delivery="Delivery:"
+            deliveryPrice="$0.00"
+            total="Total:"
+            totalPrice={goodsPrice}
+          />
+          <SharedButton
+            onPress={() => props.navigation.navigate('PaymentMethod')}
+            title="Check Out"
+            style={{
+              top: 100,
+            }}
+            textStyle={{
+              fontSize: 20,
+              color: 'white',
+            }}
+          />
+        </>
+      ) : null}
     </View>
   );
 };
