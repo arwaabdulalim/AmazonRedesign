@@ -33,6 +33,6 @@ export const handleClearCart = () => async dispatch => {
   try {
     dispatch(clearCartSuccess());
   } catch (error) {
-    return console.error(e.message);
+    return console.error(error.message);
   }
 };

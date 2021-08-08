@@ -33,6 +33,6 @@ export const handleClearList = () => async dispatch => {
   try {
     dispatch(clearListSuccess());
   } catch (error) {
-    return console.error(e.message);
+    return console.error(error.message);
   }
 };
