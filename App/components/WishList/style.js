@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width,
     paddingHorizontal: (width * 5) / 100,
   },
   flatView: {width: (width * 20) / 100},
