@@ -21,7 +21,7 @@ const Cart = props => {
         icon="trash"
         navigation={props.navigation}
       />
-      <CartList navigation={props.navigation} />
+      <CartList data={cart.list} navigation={props.navigation} />
     </SafeAreaView>
   );
 };
