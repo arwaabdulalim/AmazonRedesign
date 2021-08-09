@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-} from 'react-native';
+import {Text, View, FlatList, TouchableOpacity, Image} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import cartData from '../../assets/data/cartData';
 import SharedButton from '../SharedButton';
@@ -84,7 +77,7 @@ const CartList = props => {
             onPress={() => props.navigation.navigate('PaymentMethod')}
             title="Check Out"
             style={{
-              top: 100,
+              bottom: 50,
             }}
             textStyle={{
               fontSize: 20,
