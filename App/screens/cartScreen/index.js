@@ -9,7 +9,6 @@ import ModalComponent from '../../components/Modal';
 const Cart = props => {
   const dispatch = useDispatch();
   const {cart} = useSelector(state => state);
-  console.log('cartITEMMSSS', cart);
 
   const clearCartFunction = () => {
     dispatch(handleClearCart());

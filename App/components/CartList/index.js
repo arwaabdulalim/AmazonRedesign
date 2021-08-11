@@ -5,8 +5,13 @@ import cartData from '../../assets/data/cartData';
 import SharedButton from '../SharedButton';
 import TotalPrice from '../TotalPrice';
 import styles from './style';
-import {useDispatch,useSelector} from 'react-redux';
-import {handleAddToCart, handleClearCart,handlePlus,handleMins} from '../../redux/cart';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  handleAddToCart,
+  handleClearCart,
+  handlePlus,
+  handleMins,
+} from '../../redux/cart';
 
 const CartList = props => {
   const dispatch = useDispatch();
@@ -14,29 +19,27 @@ const CartList = props => {
 
   // handle incremant
   const addPlus = item => {
-    dispatch(handlePlus(item))
+    dispatch(handlePlus(item));
   };
 
-  const calculateTotal = () =>{
-    let total =0;
-    Object.values(list).forEach((item)=>{
-      total+=item.price*item.quantity;
-    })
-    return total
-  }
+  const calculateTotal = () => {
+    let total = 0;
+    Object.values(list).forEach(item => {
+      total += item.price * item.quantity;
+    });
+    return total;
+  };
 
   // handle decrease
   const decreaseOne = value => {
-    dispatch(handleMins(value))
+    dispatch(handleMins(value));
   };
 
   return (
     <View style={{backgroundColor: 'white'}}>
       <FlatList
         keyExtractor={(item, index) => index}
-        data={
-          Object.values(list)
-        }
+        data={Object.values(list)}
         renderItem={({item, index}) => (
           <View style={styles.mainView}>
             <TouchableOpacity onPress={() => {}} style={styles.flatView}>
@@ -56,9 +59,7 @@ const CartList = props => {
               <TouchableOpacity onPress={() => decreaseOne(item)}>
                 <Text style={{color: 'gray', fontSize: 20}}>-</Text>
               </TouchableOpacity>
-              <Text>
-                {item.quantity}
-              </Text>
+              <Text>{item.quantity}</Text>
               <TouchableOpacity onPress={() => addPlus(item)}>
                 <Text style={{color: 'gray', fontSize: 20}}>+</Text>
               </TouchableOpacity>

@@ -9,31 +9,40 @@ const slice = createSlice({
     addToCartSuccess: (state, action) => {
       //TODO: check if the product already in cart
       const item = action.payload;
-      const newList = {...state.list,[item.id]:{
-        ...item,
-        quantity:1
-      }}
+      const newList = {
+        ...state.list,
+        [item.id]: {
+          ...item,
+          quantity: 1,
+        },
+      };
       state.list = newList;
     },
     clearCartSuccess: (state, action) => {
-      state.list = [];
+      state.list = {};
     },
     increaseQty: (state, action) => {
       const item = action.payload;
-      const newList = {...state.list,[item.id]: {
-        ...item,
-        quantity: state.list[item.id]['quantity'] + 1,
-      }}
-      
+      const newList = {
+        ...state.list,
+        [item.id]: {
+          ...item,
+          quantity: state.list[item.id]['quantity'] + 1,
+        },
+      };
+
       state.list = newList;
     },
     decreaseQty: (state, action) => {
       const item = action.payload;
-      const newList = {...state.list,[item.id]: {
-        ...item,
-        quantity: state.list[item.id]['quantity'] -1,
-      }}
-      
+      const newList = {
+        ...state.list,
+        [item.id]: {
+          ...item,
+          quantity: state.list[item.id]['quantity'] - 1,
+        },
+      };
+
       state.list = newList;
     },
 
@@ -42,7 +51,8 @@ const slice = createSlice({
 });
 export default slice.reducer;
 // Actions
-const {addToCartSuccess, clearCartSuccess, increaseQty,decreaseQty} = slice.actions;
+const {addToCartSuccess, clearCartSuccess, increaseQty, decreaseQty} =
+  slice.actions;
 
 export const handleAddToCart = product => async dispatch => {
   try {
@@ -62,7 +72,6 @@ export const handlePlus = product => async dispatch => {
     return console.error(e.message);
   }
 };
-
 
 //handle  -1
 
