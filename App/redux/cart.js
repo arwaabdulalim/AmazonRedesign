@@ -3,25 +3,38 @@ import {createSlice} from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'cart',
   initialState: {
-    list: [],
+    list: {},
   },
   reducers: {
     addToCartSuccess: (state, action) => {
       //TODO: check if the product already in cart
-      state.list = [...state.list, action.payload];
+      const item = action.payload;
+      const newList = {...state.list,[item.id]:{
+        ...item,
+        quantity:1
+      }}
+      state.list = newList;
     },
     clearCartSuccess: (state, action) => {
       state.list = [];
     },
     increaseQty: (state, action) => {
-      state.list = action.payload;
-      state.list = {
-        ...state.list,
-        // [action.payload.id]: {
-        //   ...item,
-        //   quantity: cart[item.id]['quantity'] + 1,
-        // },
-      };
+      const item = action.payload;
+      const newList = {...state.list,[item.id]: {
+        ...item,
+        quantity: state.list[item.id]['quantity'] + 1,
+      }}
+      
+      state.list = newList;
+    },
+    decreaseQty: (state, action) => {
+      const item = action.payload;
+      const newList = {...state.list,[item.id]: {
+        ...item,
+        quantity: state.list[item.id]['quantity'] -1,
+      }}
+      
+      state.list = newList;
     },
 
     //TODO: handle + / - products qty
@@ -29,7 +42,7 @@ const slice = createSlice({
 });
 export default slice.reducer;
 // Actions
-const {addToCartSuccess, clearCartSuccess, increaseQty} = slice.actions;
+const {addToCartSuccess, clearCartSuccess, increaseQty,decreaseQty} = slice.actions;
 
 export const handleAddToCart = product => async dispatch => {
   try {
@@ -43,7 +56,19 @@ export const handleAddToCart = product => async dispatch => {
 
 export const handlePlus = product => async dispatch => {
   try {
+    debugger;
     dispatch(increaseQty(product));
+  } catch (e) {
+    return console.error(e.message);
+  }
+};
+
+
+//handle  -1
+
+export const handleMins = product => async dispatch => {
+  try {
+    dispatch(decreaseQty(product));
   } catch (e) {
     return console.error(e.message);
   }
