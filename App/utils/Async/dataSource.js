@@ -5,59 +5,45 @@ import cartData from '../../assets/data/cartData';
 import SharedButton from '../SharedButton';
 import TotalPrice from '../TotalPrice';
 import styles from './style';
-import {useDispatch} from 'react-redux';
-import {handleAddToCart, handleClearCart} from '../../redux/cart';
 
 const CartList = props => {
-  const dispatch = useDispatch();
   const [items, setItems] = useState(0);
   const [datasource, setDatasource] = useState();
   const [goodsPrice, setGoodsPrice] = useState('');
   useEffect(() => {
-    console.log(props.data);
     setDatasource(props.data);
   }, [props.data]);
   useEffect(() => {
     let price = 0;
     let string = '';
-    console.log('datasource:', datasource);
     datasource &&
       datasource.forEach(element => {
-        console.log('element', element);
         string = element.price.substring(1, element.price.length);
-        price += parseFloat(string.replace(',', '')) * element.quantity;
+        price += parseFloat(string.replace(',', ''));
       });
     setGoodsPrice(`$${price.toFixed(3)}`);
   }, [datasource]);
   // handle incremant
   const addPlus = value => {
-    dispatch(handleClearCart());
-    // let tempArray = datasource.map(item =>
-    //   item.value === value.id ? {...item, quantity: value.quantity + 1} : item,
-    // );
-    let tempArray = datasource;
-    tempArray.forEach(element => {
-      if (element.id === value.id) {
-        console.log('tempelement', element.quantity);
-        element.quantity = value.quantity + 1;
-      }
+    setDatasource(prevState => {
+      return [...prevState, value];
     });
-
-    // tempArray.filter(filter => filter.id === value.id)[0].quantity =
-    //   value.quantity + 1;
-    console.log('temp', tempArray);
-    // setDatasource(tempArray);
-    dispatch(handleAddToCart({...tempArray}));
   };
 
   // handle decrease
   const decreaseOne = value => {
-    dispatch(handleClearCart());
-    const tempArray = datasource;
-    tempArray.filter(filter => filter.id === value.id)[0].quantity =
-      value.quantity - 1;
-    // setDatasource(tempArray);
-    dispatch(handleAddToCart({...tempArray}));
+    console.log(
+      datasource.slice(
+        0,
+        datasource.filter(filter => filter === value).length - 1,
+      ),
+    );
+    setDatasource(
+      datasource.slice(
+        0,
+        datasource.filter(filter => filter === value).length - 1,
+      ),
+    );
   };
 
   return (

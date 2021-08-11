@@ -13,7 +13,9 @@ const ProductDetails = props => {
 
   // function to handle add to cart
   const addPressed = () => {
-    dispatch(handleAddToCart(props.route.params.productDetails));
+    dispatch(
+      handleAddToCart({...props.route.params.productDetails, quantity: 1}),
+    );
     setModalVisible(true);
   };
 
