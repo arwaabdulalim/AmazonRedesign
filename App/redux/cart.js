@@ -35,15 +35,24 @@ const slice = createSlice({
     },
     decreaseQty: (state, action) => {
       const item = action.payload;
-      const newList = {
-        ...state.list,
-        [item.id]: {
-          ...item,
-          quantity: state.list[item.id]['quantity'] - 1,
-        },
-      };
-
-      state.list = newList;
+      if (state.list[item.id]['quantity'] === 1) {
+        const newList = {
+          ...state.list,
+          [item.id]: {
+            ...item,
+            quantity: 1,
+          },
+        };
+      } else {
+        const newList = {
+          ...state.list,
+          [item.id]: {
+            ...item,
+            quantity: state.list[item.id]['quantity'] - 1,
+          },
+        };
+        state.list = newList;
+      }
     },
 
     //TODO: handle + / - products qty

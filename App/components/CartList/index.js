@@ -1,39 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Text, View, FlatList, TouchableOpacity, Image} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import cartData from '../../assets/data/cartData';
 import SharedButton from '../SharedButton';
 import TotalPrice from '../TotalPrice';
 import styles from './style';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  handleAddToCart,
-  handleClearCart,
-  handlePlus,
-  handleMins,
-} from '../../redux/cart';
 
 const CartList = props => {
+  const {addPlus, decreaseOne, calculateTotal} = props;
   const dispatch = useDispatch();
   const {list} = useSelector(state => state.cart);
-
-  // handle incremant
-  const addPlus = item => {
-    dispatch(handlePlus(item));
-  };
-
-  const calculateTotal = () => {
-    let total = 0;
-    Object.values(list).forEach(item => {
-      total += item.price * item.quantity;
-    });
-    return total;
-  };
-
-  // handle decrease
-  const decreaseOne = value => {
-    dispatch(handleMins(value));
-  };
 
   return (
     <View style={{backgroundColor: 'white'}}>
