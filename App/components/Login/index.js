@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   password: yup.string().min(6).required('Password is required'),
 });
 
-const Login = props => {
+const Login = ({navigation}) => {
   const {
     control,
     handleSubmit,
@@ -21,7 +21,7 @@ const Login = props => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => navigation.navigate('Home');
   const [isPassword, setIsPassword] = useState(true);
 
   return (

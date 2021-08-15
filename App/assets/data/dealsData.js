@@ -27,10 +27,10 @@ const dealsData = [
   },
   {
     id: 3,
-    productName: 'Cashmere Jacket3',
+    productName: 'Cotton Jacket',
     brand: 'KITON',
-    image: require('../Images/011526.png'),
-    rating: '5',
+    image: require('../Images/jacket.png'),
+    rating: '3.5',
     numberOfRates: 3424,
     price: 50,
     desc: `A beige jacket from dense cashmere was included in the collection of the fall-winter 2017 season. The product does not have a lining (there is only a small pad in the shoulder area), so it sits better
@@ -40,7 +40,7 @@ const dealsData = [
   },
   {
     id: 4,
-    productName: 'Cashmere Jacket444',
+    productName: 'Linen Jacket',
     brand: 'KITON',
     image: require('../Images/011526.png'),
     rating: '5',

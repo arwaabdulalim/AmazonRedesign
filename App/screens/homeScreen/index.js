@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import MainTitle from '../../components/MainTitle';
 import Header from '../../components/Header';
@@ -38,9 +31,11 @@ const Home = props => {
   //console.log('categoryList', categoryList);
   return (
     <SafeAreaView>
-      <Header />
-      <Category navigation={props.navigation} />
-      <Deals navigation={props.navigation} />
+      <ScrollView>
+        <Header navigation={props.navigation} />
+        <Category navigation={props.navigation} />
+        <Deals navigation={props.navigation} />
+      </ScrollView>
     </SafeAreaView>
     //<SafeAreaView style={{}}>
     // <Text>Home Screen</Text>

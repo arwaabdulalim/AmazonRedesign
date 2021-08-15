@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   password: yup.string().min(6).required('Password is required'),
 });
 
-const SignUp = props => {
+const SignUp = ({navigation}) => {
   const {
     control,
     handleSubmit,
@@ -22,10 +22,9 @@ const SignUp = props => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = data => {
-    console.log(data);
-    //props.navigation.navigate('Account');
-  };
+  const onSubmit = data => navigation.navigate('Home');
+  //props.navigation.navigate('Account');
+
   const [isPassword, setIsPassword] = useState(true);
 
   return (
@@ -36,7 +35,7 @@ const SignUp = props => {
           <Text style={styles.login}>
             Already a member?{' '}
             <TouchableOpacity
-              onPress={() => props.navigation.navigate('LoginScreen')}>
+              onPress={() => navigation.navigate('LoginScreen')}>
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
           </Text>
