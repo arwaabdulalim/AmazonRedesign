@@ -11,6 +11,7 @@ const Deals = props => {
     <View style={{backgroundColor: 'white'}}>
       <MainTitle title="Deals of the Day" />
       <FlatList
+        nestedScrollEnabled
         numColumns={2}
         data={dealsData}
         renderItem={({item, index}) => (

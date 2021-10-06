@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    flex: 1,
   },
   flatView: {
     height: (height * 31) / 100,

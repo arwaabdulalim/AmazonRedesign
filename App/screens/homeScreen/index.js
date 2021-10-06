@@ -31,11 +31,9 @@ const Home = props => {
   //console.log('categoryList', categoryList);
   return (
     <SafeAreaView>
-      <ScrollView>
-        <Header navigation={props.navigation} />
-        <Category navigation={props.navigation} />
-        <Deals navigation={props.navigation} />
-      </ScrollView>
+      <Header navigation={props.navigation} />
+      <Category navigation={props.navigation} />
+      <Deals navigation={props.navigation} />
     </SafeAreaView>
     //<SafeAreaView style={{}}>
     // <Text>Home Screen</Text>

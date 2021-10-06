@@ -25,6 +25,7 @@ const Category = ({navigation}) => {
       </View>
       <MainTitle title="Category" />
       <FlatList
+        nestedScrollEnabled
         numColumns={2}
         data={categoryData}
         renderItem={({item, index}) => (
